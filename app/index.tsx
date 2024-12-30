@@ -1,15 +1,26 @@
-import { Text, View } from "react-native";
+import { Text, View, FlatList } from "react-native";
+import PostItem from "@/components/PostItem";
+
+const DATA = [
+  {text: 'a'},
+  {text: 'b'},
+  {text: 'c'},
+  {text: 'd'},
+  {text: 'e'},
+]
 
 export default function Index() {
   return (
     <View
       style={{
         flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
+        alignItems: "center"
       }}
     >
-      <Text>Edit app/index.tsx to edit this screen.</Text>
+      <FlatList 
+      data={DATA}
+      renderItem={({item}) => <PostItem text={item.text} />}/>
+      <PostItem text="Tes" />
     </View>
   );
 }
