@@ -1,26 +1,52 @@
-import { Text, View, FlatList } from "react-native";
+import { Text, View, FlatList, ActivityIndicator } from "react-native";
 import PostItem from "@/components/PostItem";
+import { useEffect, useState } from "react";
 
-const DATA = [
-  {text: 'a'},
-  {text: 'b'},
-  {text: 'c'},
-  {text: 'd'},
-  {text: 'e'},
-]
+type Post = {
+  userId: string,
+  id: string,
+  title: string,
+  body: string
+}
 
 export default function Index() {
+  const [isLoading, setLoading] = useState(true)
+  const  [data, setData] = useState<Post[]>([])
+  const fetchPosts = async () => {
+    try {
+      fetch("https://jsonplaceholder.typicode.com/posts")
+      .then(response => response.json())
+      .then(json => {
+        setData(json)
+      })
+    } catch (error) {
+      console.error(error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    fetchPosts()
+  }, [])
+
   return (
     <View
       style={{
         flex: 1,
-        alignItems: "center"
       }}
     >
-      <FlatList 
-      data={DATA}
-      renderItem={({item}) => <PostItem text={item.text} />}/>
-      <PostItem text="Tes" />
+      {isLoading ? (
+        <ActivityIndicator/>
+      ) : (
+        <FlatList 
+        style={{flex: 1}}
+        data={data}
+        keyExtractor={({id}) => id}
+        renderItem={({item}) => (
+          <PostItem id={item.id} userId={item.userId} title={item.title}/>
+        )}/>
+      )}
     </View>
   );
 }
