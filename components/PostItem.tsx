@@ -1,5 +1,6 @@
+import { Link } from "expo-router"
 import { useEffect, useState } from "react"
-import { View, StyleSheet, Text, ActivityIndicator } from "react-native"
+import { View, StyleSheet, Text, ActivityIndicator, Pressable } from "react-native"
 // import { Image, type ImageSource} from "expo-image"
 import { Image } from "react-native"
 
@@ -31,27 +32,55 @@ export default function PostItem({id, userId, title}: Props) {
         getImage()
     }, [])
     return (
-        <View style={styles.container}>
-            {isLoading ? (
-                <ActivityIndicator/>
-            ) : (
-                <View style={styles.item}>
-                    <Image source={{uri: data?.url}} style={{width: 100, height: 100}}/> 
-                    <View>
-                        <Text>{userId}</Text>
-                        <Text>{title}</Text>
+        <Link href="/post" style={styles.container} asChild>
+            <Pressable
+                onPress={() => {
+                    console.log({title});
+                }}
+                style={({pressed}) => [{
+                    backgroundColor: pressed ? 'rgb(210, 230, 255)' : 'white'
+                }, styles.wrapperCustom]}
+            >
+                {isLoading ? (
+                    <ActivityIndicator/>
+                ) : (
+                    <View style={styles.item}>
+                        <Image source={{uri: data?.url}} style={styles.photo}/> 
+                        <View style={styles.texts}>
+                            <Text style={styles.subText}>User {userId}</Text>
+                            <Text numberOfLines={2} style={styles.titleText}>{title}</Text>
+                        </View>
                     </View>
-                </View>
-            )}
-        </View>
+                )}                  
+            </Pressable>
+        </Link>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-        
+        margin: 10
     },
     item: {
         flexDirection: 'row'
-    }
+    },
+    photo: {
+        width: 80,
+        height: 80,
+        borderRadius: 10
+    },
+    texts: {
+        justifyContent: 'center',
+        marginStart: 15,
+        marginEnd: 15,
+        flexShrink: 1
+    },
+    subText: {
+        fontSize: 13
+    },
+    titleText: {
+        fontSize: 18,
+        fontWeight: 'bold'
+    },
+    wrapperCustom: {}
 })

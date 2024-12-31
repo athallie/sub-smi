@@ -14,6 +14,7 @@ export default function RootLayout() {
       headerLeft: () => <IconButton iconName="person"/>,
       headerRight: () => <IconButton iconName="dark-mode"/>
     }}/>
+    <Stack.Screen name="post"/>
 
     </Stack>
   )
