@@ -3,6 +3,9 @@ import { StyleSheet } from "react-native";
 import IconButton from "@/components/IconButton";
 
 export default function RootLayout() {
+
+  const darkMode = () => <IconButton iconName="dark-mode"/>
+
   return (
     <Stack
       
@@ -12,9 +15,13 @@ export default function RootLayout() {
       title: 'Home',
       headerTitleAlign: 'center',
       headerLeft: () => <IconButton iconName="person"/>,
-      headerRight: () => <IconButton iconName="dark-mode"/>
+      headerRight: darkMode
     }}/>
-    <Stack.Screen name="post"/>
+    <Stack.Screen name="post" options={{
+      title: 'Post',
+      headerTitleAlign: 'center',
+      headerRight: darkMode
+    }}/>
 
     </Stack>
   )

@@ -1,4 +1,4 @@
-import { Link } from "expo-router"
+import { Link, useLocalSearchParams } from "expo-router"
 import { useEffect, useState } from "react"
 import { View, StyleSheet, Text, ActivityIndicator, Pressable } from "react-native"
 // import { Image, type ImageSource} from "expo-image"
@@ -32,7 +32,7 @@ export default function PostItem({id, userId, title}: Props) {
         getImage()
     }, [])
     return (
-        <Link href="/post" style={styles.container} asChild>
+        <Link href={`/post?id=${id}&image=${data?.url}`} style={styles.container} asChild>
             <Pressable
                 onPress={() => {
                     console.log({title});
