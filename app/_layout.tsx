@@ -1,5 +1,4 @@
 import { Link, Stack } from "expo-router";
-import { StyleSheet } from "react-native";
 import IconButton from "@/components/IconButton";
 
 export default function RootLayout() {

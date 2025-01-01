@@ -1,4 +1,3 @@
-import { Button } from "react-native";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { Link, RelativePathString } from "expo-router";
 

@@ -1,7 +1,6 @@
-import { Link, useLocalSearchParams } from "expo-router"
+import { Link } from "expo-router"
 import { useEffect, useState } from "react"
 import { View, StyleSheet, Text, ActivityIndicator, Pressable } from "react-native"
-// import { Image, type ImageSource} from "expo-image"
 import { Image } from "react-native"
 
 type Props = {
@@ -59,7 +58,9 @@ export default function PostItem({id, userId, title}: Props) {
 
 const styles = StyleSheet.create({
     container: {
-        margin: 10
+        marginEnd: 10,
+        marginVertical: 16,
+        marginStart: 24
     },
     item: {
         flexDirection: 'row'
