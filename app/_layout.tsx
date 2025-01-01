@@ -1,10 +1,10 @@
-import { Stack } from "expo-router";
+import { Link, Stack } from "expo-router";
 import { StyleSheet } from "react-native";
 import IconButton from "@/components/IconButton";
 
 export default function RootLayout() {
 
-  const darkMode = () => <IconButton iconName="dark-mode"/>
+  const profileButton = () => <IconButton href={`/profile`} iconName="person"/>
 
   return (
     <Stack
@@ -14,13 +14,24 @@ export default function RootLayout() {
     <Stack.Screen name="index" options={{
       title: 'Home',
       headerTitleAlign: 'center',
-      headerLeft: () => <IconButton iconName="person"/>,
-      headerRight: darkMode
+      headerLeft: profileButton,
     }}/>
+
     <Stack.Screen name="post" options={{
       title: 'Post',
       headerTitleAlign: 'center',
-      headerRight: darkMode
+    }}/>
+
+    <Stack.Screen name="profile" options={{
+      title: 'Profile',
+      headerTitleAlign: 'center',
+    }}/>
+
+    
+    <Stack.Screen name="modal" options={{
+      title: 'Repository',
+      headerTitleAlign: 'center',
+      presentation: 'modal'
     }}/>
 
     </Stack>

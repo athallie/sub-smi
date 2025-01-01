@@ -1,6 +1,7 @@
 import { Text, View, FlatList, ActivityIndicator } from "react-native";
 import PostItem from "@/components/PostItem";
 import { useEffect, useState } from "react";
+import { Link } from "expo-router";
 
 type Post = {
   userId: string,
